@@ -26,6 +26,60 @@ cd phishing-url-detector
 touch phishing_detector.py blacklist.txt report.txt README.md  
 
 ---
+## ⚙️ Creating Python File using Nano Editor
+
+Open file using nano editor:
+
+nano phishing_detector.py
+
+Then paste the following Python code inside the file:
+
+---
+
+## 🧠 Python Code
+
+```python
+# Phishing URL Detection Tool
+# Author: Mohit Kumar
+
+def check_phishing(url):
+    suspicious_keywords = [
+        "login", "verify", "secure", "account", "update",
+        "bank", "paypal", "confirm", "signin", "password"
+    ]
+
+    suspicious_domains = [
+        ".xyz", ".tk", ".ml", ".ga", ".cf"
+    ]
+
+    score = 0
+
+    for keyword in suspicious_keywords:
+        if keyword in url.lower():
+            score += 1
+
+    for domain in suspicious_domains:
+        if domain in url.lower():
+            score += 1
+
+    if "https://" not in url:
+        score += 1
+
+    print("\nURL Analysis Report")
+    print("-" * 30)
+    print(f"URL: {url}")
+
+    if score >= 2:
+        print("⚠️ High Risk Phishing Website Detected")
+    elif score == 1:
+        print("⚠️ Suspicious URL - Be Careful")
+    else:
+        print("✅ Safe URL")
+
+url = input("Enter Website URL: ")
+check_phishing(url)
+
+Press ctrl+X+Y & enter
 
 ### 5. Create Virtual Environment
 python3 -m venv venv  
